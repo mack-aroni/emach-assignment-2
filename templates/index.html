@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assignment-2</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='index.css') }}"
+    />
+  </head>
+  <body>
+    <h1>KMeans Clustering Algorithm</h1>
+    <div>
+      <label for="centroid">Number of Clusters (k):</label>
+      <input type="number" id="centroid" value="3" min="2" max="10" />
+
+      <label for="method">Initialization Method:</label>
+      <select id="method">
+        <option value="random">Random</option>
+        <option value="farthest">Farthest First</option>
+        <option value="kmeans++">KMeans++</option>
+        <option value="manual">Manual</option>
+      </select>
+
+      <button id="step">Step Through KMeans</button>
+      <button id="converge">Run to Convergence</button>
+      <button id="generate">Generate New Dataset</button>
+      <button id="reset">Reset Algorithm</button>
+    </div>
+
+    <div id="plot-area"></div>
+
+    <script src="{{ url_for('static', filename='index.js') }}"></script>
+  </body>
+</html>
