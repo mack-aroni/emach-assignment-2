@@ -28,8 +28,7 @@ jobs:
         source venv\Scripts\activate
         pip install -r requirements.txt
 
-    # Optionally run the Flask app in the background (this can be removed if not needed)
-    - name: Run Flask app in the background (optional)
+    - name: Run Flask app in the background
       if: ${{ github.event_name == 'push' }}
       run: |
         source venv/bin/activate
