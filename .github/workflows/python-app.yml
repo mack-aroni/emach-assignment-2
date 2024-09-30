@@ -1,0 +1,40 @@
+name: Python Flask CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        source venv\Scripts\activate
+        pip install -r requirements.txt
+
+    # Optionally run the Flask app in the background (this can be removed if not needed)
+    - name: Run Flask app in the background (optional)
+      if: ${{ github.event_name == 'push' }}
+      run: |
+        source venv/bin/activate
+        export FLASK_APP=app.py
+        export FLASK_ENV=development
+        nohup flask run --port 3000 &
+      env:
+        CI: true
